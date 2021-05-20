@@ -4,6 +4,8 @@
 
 This Repository shows the code used for the Live-Demo for the presentation "Ansible and Terraform - a great match!" on the Ansible-Anwendertreffen 2021.
 
+You can also find the presentation slides [here](./Ans_Anw_ans_tf_match.pdf).
+
 ## Usage
 ### Requirements
 
