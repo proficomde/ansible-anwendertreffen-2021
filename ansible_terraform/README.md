@@ -2,16 +2,17 @@
 
 <!-- README.md file for ansible_terraform -->
 
-This Repository shows the code used for the Live-Demo for the presentation "Ansible and Terraform - a great match!" on the Ansible-Anwendertreffen 2021
+This Repository shows the code used for the Live-Demo for the presentation "Ansible and Terraform - a great match!" on the Ansible-Anwendertreffen 2021.
 
-## Requirements
+## Usage
+### Requirements
 
 - Terraform v0.14.5+
 - Ansible v2.9.18+
 
-## Variables
+### Variables
 
-In order to be able to use terraform to deploy infrastructure on Azure, you need to proivde some authentication [here](./terraform/main.tf).
+In order to be able to use terraform to deploy infrastructure on Azure, you need to proivde some authentication values [here](./terraform/main.tf).
 ```
   subscription_id - ID of the Azure subscription
   client_id       - Client ID of the application
@@ -32,13 +33,20 @@ image_sku               - VM image SKU
 image_version           - VM image version
 ```
 
-## Dependencies
+### Dependencies
 
 For Ansible the following collections need to be installed:
 
 - community.general
 
-## Contact
+### Run
+
+To execute the complete deplyoment simple run the playbook.yml similar to below.
+
+```
+ansible-playbook playbook.yml
+```
+### Contact
 
 In case you want to get in touch with the developers and responsibles please
 have a look at the below entries:
