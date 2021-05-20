@@ -1,0 +1,64 @@
+# reference: https://git-scm.com/docs/gitignore
+
+# ansible
+*.retry
+.cache/
+
+# terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfstate.lock.info
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+secrets.terraform.auto.tfvars
+.terraformrc
+terraform.rc
+*.lock.hcl
+
+# compiled source
+bin/
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# database
+*.sql
+*.sqlite
+
+# lock files
+*.lock
+package-lock.json
+
+# logs
+logs/
+*.log
+
+# OS generated files
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.rar
+*.tar
+*.zip
+
+# python
+*.py[cod]
+__pycache__/
+
+# temporary files
+*.swp
+*.swo
+*~
