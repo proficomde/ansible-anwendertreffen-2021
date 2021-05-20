@@ -2,7 +2,7 @@
 
 <!-- README.md file for ansible_terraform -->
 
-This Repository shows the code used for the Live-Demo for the presentation "Ansible and Terraform - a great match!" on the Ansible-Anwendertreffen 2021.
+This Repository shows the code used for the Live-Demo for the presentation "Ansible and Terraform - a great match!" at the Ansible-Anwendertreffen 2021.
 
 You can also find the presentation slides [here](./Ans_Anw_ans_tf_match.pdf).
 
@@ -19,7 +19,7 @@ In order to be able to use terraform to deploy infrastructure on Azure, you need
   subscription_id - ID of the Azure subscription
   client_id       - Client ID of the application
   client_secret   - Client secret of the application
-  tenant_id       = Tenant ID of the application
+  tenant_id       - Tenant ID of the application
 ```
 If you want to use other authentication methods then client secret, see [Authenticating to Azure](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs#authenticating-to-azure).
 
