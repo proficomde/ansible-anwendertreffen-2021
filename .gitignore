@@ -4,20 +4,6 @@
 *.retry
 .cache/
 
-# terraform
-**/.terraform/*
-*.tfstate
-*.tfstate.*
-*.tfstate.lock.info
-override.tf
-override.tf.json
-*_override.tf
-*_override.tf.json
-secrets.terraform.auto.tfvars
-.terraformrc
-terraform.rc
-*.lock.hcl
-
 # compiled source
 bin/
 *.com
@@ -62,3 +48,20 @@ __pycache__/
 *.swp
 *.swo
 *~
+
+# terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfstate.lock.info
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+secrets.terraform.auto.tfvars
+.terraformrc
+terraform.rc
+*.lock.hcl
+
+# Vagrant
+.vagrant/
