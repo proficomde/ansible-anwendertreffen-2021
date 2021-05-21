@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+ <head>
+   <title>There you go!</title>
+   <style>
+        body {
+        background-color: Snow;
+        margin: 0 15%;
+        font-family: sans-serif;
+        }
+
+        h1 {
+        text-align: center;
+        font-family: serif;
+        font-weight: normal;
+        text-transform: uppercase;
+        border-bottom: 1px solid #57b1dc;
+        margin-top: 30px;
+        }
+
+        h2 {
+        color: #d1633c;
+        font-size: 1em;
+        }
+		div.row {
+			display:inline-block;
+		}
+    </style>
+ </head>
+ <body>
+   <h1>Thank god, it worked</h1>
+   <h2>Powered by:</h2> 
+   <p><strong>Ansible</strong> and <strong>Terraform</strong>.</p><br>
+   <h2>Meine Distribution:</h2>  
+   <p>{{ ansible_distribution }}</p><br>
+   <h2>Meine private IP:</h2>  
+   <p>{{ ansible_eth0.ipv4.address }}</p>
+   <div class=row>
+	  <div style="float:left;margin-right:50px;">
+		<img title="Terraform Infrastructure Graph" src="graph.svg" alt="terraform_graph" class="Center" width="1400">
+	  </div>
+	</div> 
+ </body>
+</html>
