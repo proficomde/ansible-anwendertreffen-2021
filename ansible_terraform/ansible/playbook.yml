@@ -1,0 +1,106 @@
+---
+# Plays and tasks for terraform and ansible
+
+- name: "Terraforming"  
+  hosts: "localhost"
+  vars:
+    terraform_state: "present"
+  gather_facts: false
+  connection: "local"
+
+  tasks:
+
+    ## Init terraform and apply config
+
+    - name: "Apply current terraform configuration"
+      community.general.terraform:
+        project_path: "/vagrant/terraform/"
+        state: "{{ terraform_state }}"
+        force_init: true
+      register: "outputs"
+
+    ## Create host group with terraform IP outputs
+
+    - name: "Add VM IPs to host group"
+      ansible.builtin.add_host:
+        name: "{{ item }}"
+        groups: "azurevms"
+      loop: "{{ outputs.outputs.vm_ip.value }}"
+      when: terraform_state  == "present"
+
+    ## Create terraform graph.svg
+
+    - name: "Create Terraform graph"
+      ansible.builtin.shell:
+      args:
+        cmd: "terraform graph | dot -Tsvg > graph.svg"
+        chdir: "/vagrant/terraform/"     
+
+- name: "Work with created VMs"
+  hosts: "azurevms"
+  user: "ansibleuser"
+  become: true
+  gather_facts: false
+
+  tasks:
+
+    ## Check VM status
+
+    - name: "Wait for VMs to be reachable"
+      ansible.builtin.wait_for_connection:
+        delay: 10
+        sleep: 10
+        timeout: 120
+
+    - name: "Simple Ping"
+      ansible.builtin.ping:
+
+    - name: "Gather facts"
+      ansible.builtin.gather_facts:
+
+    ## Package Management
+
+    - name: "Install apache"
+      package:
+        name: "apache2"
+        state: "latest"
+      become: true
+
+    ## Configuration Management
+
+    - name: "Copy graph"
+      ansible.builtin.copy:
+        src: "/vagrant/terraform/graph.svg"
+        dest: "/var/www/html/"
+        owner: "root"
+        group: "root"
+        mode: 0644
+      become: true
+
+    - name: "Copy new index file"
+      ansible.builtin.template:
+        src: "index.html.j2"
+        dest: "/var/www/html/index.html"
+        owner: "root"
+        group: "root"
+        mode: 0644
+      become: true
+
+    ## Service Management
+
+    - name: "Manage apache Service"
+      ansible.builtin.service:
+        name: "apache2"
+        state: "started"
+        enabled: true
+      become: true
+
+    ## Some more stuff
+
+    - name: "Check Website Connectivity"
+      uri:
+        url: http://{{ inventory_hostname }}
+
+    - name: "Print URL"
+      ansible.builtin.debug:
+        msg: "Klick me: http://{{ inventory_hostname }} !"
